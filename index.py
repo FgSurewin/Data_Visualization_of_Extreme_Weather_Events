@@ -1,6 +1,6 @@
 
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 
@@ -10,8 +10,9 @@ from dash.dependencies import Input, Output
 from app import app
 from app import server
 
+
 # Connect to your app pages
-from pages import pca_3d
+from pages import pca_3d, pca_variance, home, pca_time, pca_pairplot
 
 
 app.layout = html.Div([
@@ -22,9 +23,10 @@ app.layout = html.Div([
             dbc.DropdownMenu(
                 children=[
                     # dbc.DropdownMenuItem("More pages", header=True),
+                    dbc.DropdownMenuItem("Scree Plot", href="/pca_scree"),
+                    dbc.DropdownMenuItem("Pairplot", href="/pca_pairplot"),
                     dbc.DropdownMenuItem("3D Plot", href="/pca_3d"),
-                    dbc.DropdownMenuItem("Scree Plot", href="/test2"),
-                    dbc.DropdownMenuItem("Pairplot", href="/test3"),
+                    dbc.DropdownMenuItem("Time Series", href="/pca_time"),
                 ],
                 nav=True,
                 in_navbar=True,
@@ -43,8 +45,16 @@ app.layout = html.Div([
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
+    if pathname == '/':
+        return home.layout
     if pathname == '/pca_3d':
         return pca_3d.layout
+    if pathname == '/pca_scree':
+        return pca_variance.layout
+    if pathname == '/pca_time':
+        return pca_time.layout
+    if pathname == '/pca_pairplot':
+        return pca_pairplot.layout
     else:
         return "404 Page Error! Please choose a link"
 
