@@ -1,6 +1,6 @@
 from dash import dcc
 from dash import html
-from dash.dependencies import Input, Output
+import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
@@ -8,13 +8,35 @@ from app import app
 
 ratio = [0.403634  , 0.21803177, 0.15440164, 0.12259775, 0.06709435, 0.03424049]
 EXP_var=pd.DataFrame(ratio, columns=["Explained Variance"])
-EXP_var["Pricipal Components"]=['PC1','PC2','PC3','PC4','PC5','PC6']
+EXP_var["PC"]=['PC1','PC2','PC3','PC4','PC5','PC6']
+EXP_var["Cumulative Variance"]=EXP_var['Explained Variance'].cumsum()
 
-fig_ratio = px.bar(EXP_var, 
-             x='Pricipal Components', y='Explained Variance',
-             text='Explained Variance',
-)
-fig_ratio.update_traces(texttemplate='%{text:.3f}', textposition='outside')
+
+fig_ratio = go.Figure()
+
+fig_ratio.add_trace(
+    go.Scatter(
+        x=EXP_var['PC'],
+        y=EXP_var['Cumulative Variance'],
+        marker=dict(size=15, color="LightSeaGreen"),
+        text=EXP_var['Cumulative Variance'],
+        texttemplate='%{text:.3f}',
+        textposition='middle right',
+        name="Cumulative Variance"
+    ))
+
+fig_ratio.add_trace(
+    go.Bar(
+        x=EXP_var['PC'],
+        y=EXP_var['Explained Variance'],
+        marker=dict(color="RoyalBlue"),
+        text=EXP_var['Explained Variance'],
+        texttemplate='%{text:.3f}',
+        textposition='outside',
+        name="Explained Variance"
+    ))
+
+# fig_ratio.update_traces(texttemplate='%{text:.3f}', textposition='outside')
 fig_ratio.update_layout(template='ggplot2') 
 
 layout = html.Div([
@@ -29,12 +51,13 @@ layout = html.Div([
             ], width=12 , lg=8 ,style={"paddingLeft":"100px", "paddingRight":"100px"}),
             dbc.Col(
                 [
-                    html.H2("Findings: (The following sentences are fake...)"),
-                    html.P("If you're visiting this page, you're likely here because you're searching for a random sentence. Sometimes a random word just isn't enough, and that is where the random sentence generator comes into play. By inputting the desired number, you can make a list of as many random sentences as you want or need. Producing random sentences can be helpful in a number of different ways.")
+                    html.H2("Findings: "),
+                    html.P("The following visualization is a bar chart that compares the relationship between the explained variance and the principal components."),
+                    html.P("As seen below, the first principal component generated is the one that possesses the highest ratio as opposed to the other values computed. In other words, PC1 reveals the percentage of variance that is attributed by each of the selected components. In theory, it would be ideal to have an explained variance ratio below .80 to build accurate machine learning models without overfitting the data.")
                 ],
                 width=12,
                 lg=4,
-                style={"paddingRight": "50px"}
+                style={"padding": "0 50px", "fontSize": "20px"}
             )
     ])   
 ])

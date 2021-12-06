@@ -14,12 +14,14 @@ layout = html.Div([
     dbc.Row([
             dbc.Col(
                 [
-                    html.H2("Findings: (The following sentences are fake...)"),
-                    html.P("If you're visiting this page, you're likely here because you're searching for a random sentence. Sometimes a random word just isn't enough, and that is where the random sentence generator comes into play. By inputting the desired number, you can make a list of as many random sentences as you want or need. Producing random sentences can be helpful in a number of different ways.")
+                    html.H2("Findings:"),
+                    html.P("The following visualization is a time series plot that presents the variation of the first principal component (the one with highest explained variance) over time."),
+                    html.P("Here, it is evident that hurricanes are the most prominent disastrous event, however when plotting it against the years, another piece of information is revealed. There is an increase in the PC score for Hurricanes as the years increase from 1996 to 2015. The increase in PC scores means an increase in the impact of Hurricane in terms of property damage, crops damage, fatality and injuries. The increased impact over years could be due to the increased severity/frequency of the event. climate change and the overwhelming increase of greenhouse gases in the atmosphere. Lastly, color has been implemented as a visual encoding to help the end user understand and differentiate between the different types of extreme weather events."),
+                    html.P("The next visualization is the time series plot of the second principal component. The plot shows a peak value in principal component scores in 2005, which contributes to the hurricane Katrina, the most destructive for United States landfalling storms. Here also we used color encoding to differentiate between different types of extreme weather events."),
                 ],
                 width=12,
                 lg=4,
-                style={"paddingLeft": "50px"}
+                style={"padding": "0 50px", "fontSize":"20px"}
             ),
             dbc.Col([
                 dbc.Row(

@@ -37,12 +37,13 @@ layout = html.Div([
             ], width=12 , lg=8 ,style={"paddingLeft":"100px", "paddingRight":"100px"}),
             dbc.Col(
                 [
-                    html.H2("Findings: (The following sentences are fake...)"),
-                    html.P("If you're visiting this page, you're likely here because you're searching for a random sentence. Sometimes a random word just isn't enough, and that is where the random sentence generator comes into play. By inputting the desired number, you can make a list of as many random sentences as you want or need. Producing random sentences can be helpful in a number of different ways.")
+                    html.H2("Findings: "),
+                    html.P("The following visualization is a 3-dimensional plot that describes the relationship between the first three principal components."),
+                    html.P("As seen below, the most prominent events are Hurricanes since those are the events that deviate the most from the other occurrences. Floods, Tornadoes, and Wildfires seem to be in harmony with one another as they occupy the same area within this 3-dimensional space. There are no clear and evident clusters that differentiate one principal component from another. This is probably because the features selected don’t deviate as much as they should. Lastly, the main channel for this visualization is the color of each mark that maps to the specific event type from the data set."),
                 ],
                 width=12,
                 lg=4,
-                style={"paddingRight": "50px"}
+                style={"padding": "0 50px", "fontSize": "20px"}
             ),
     ])   
 ])
@@ -58,7 +59,7 @@ def display_value(value):
               color=value,
               color_discrete_map={'Floods': 'red','Hurricane':'blue','Tornado':'green','Wildfire':'orange'},
               opacity=0.6,
-              height=1000
+              height=800
               )
     # # tight layout
     # fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))
