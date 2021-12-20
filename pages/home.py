@@ -88,16 +88,16 @@ def create_map_plot(event_type, attribute, agg_func, range_color=None):
   if range_color: final_number=range_color
   if event_type == "Floods": title = event_type[:-1]
   else: title = event_type
-  fig = px.choropleth(merged_sub, geojson=counties, locations='FIPS', color=attribute,
+  fig = px.choropleth_mapbox(merged_sub, geojson=counties, locations='FIPS', color=attribute,
                               color_continuous_scale= final_color,
                               range_color=(0, final_number),
                               hover_data = {'County':True, attribute: True, 'FIPS':False},
-                              
-                              scope="usa" )
+                              mapbox_style="carto-positron",
+                              zoom=3, center = {"lat": 37.0902, "lon": -95.7129})
   fig.update_layout(
     #   title="Total "+ title + "s Records during 1996-2020", 
       margin=dict(l=0, r=0, t=0, b=0),
-      width=1000,
+      width=1200,
       height=680
       ) #,margin={"r":0,"t":0,"l":0,"b":0})
   return fig
@@ -119,7 +119,7 @@ layout = html.Div([
                     )
                 ])
                 ],
-                width=12, md=6,
+                width=12, md=7,
                 style={"paddingLeft":"50px" ,"fontSize": "20px"}
             ),
             dbc.Col([
@@ -128,7 +128,7 @@ layout = html.Div([
                         dcc.Graph(id='fig_scatter', figure={})),
                     justify="center",
                 )
-            ], width=12, md=6,style={"paddingLeft":"50px", "paddingRight":"50px"}), 
+            ], width=12, md=5,style={"paddingLeft":"50px", "paddingRight":"50px"}), 
     ]),
     dbc.Row([
                 dbc.Col([
@@ -136,7 +136,7 @@ layout = html.Div([
                         dbc.Button("Inspect the Damage Loss", style={"margin": "0 10px"},id='first_btn', n_clicks=0),
                         dbc.Button("Inspect the Number of Occurrences of Specific Event",id='second_btn', n_clicks=0),
                     ], class_name="d-flex justify-content-between")
-                ], width=12, md=6), 
+                ], width=12, md=7), 
                 dbc.Col([
                     html.Div([
                         html.H4(children="Event Types: "),
@@ -146,7 +146,7 @@ layout = html.Div([
                                 options=[{'label': "Floods", 'value': "Floods"} , {'label': "Wildfire", 'value': "Wildfire"}, {'label': "Tornado", 'value': "Tornado"}, {'label': "Hurricane", 'value': "Hurricane"}],
                                 style={"color": "black", "width": "400px"})
                         ], className="d-flex  justify-content-around", style={"paddingTop": "12px"})
-                ], width=12, md=6)
+                ], width=12, md=5)
             ]),
 ])
 
