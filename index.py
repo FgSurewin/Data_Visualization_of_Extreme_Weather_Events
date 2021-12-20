@@ -12,7 +12,7 @@ from app import server
 
 
 # Connect to your app pages
-from pages import pca_3d, pca_variance, home, pca_time, pca_pairplot
+from pages import pca_3d, pca_variance, home, pca_time, pca_pairplot, pca_heatmap
 
 
 app.layout = html.Div([
@@ -27,6 +27,7 @@ app.layout = html.Div([
                     dbc.DropdownMenuItem("Pairplot", href="/pca_pairplot"),
                     dbc.DropdownMenuItem("3D Plot", href="/pca_3d"),
                     dbc.DropdownMenuItem("Time Series", href="/pca_time"),
+                    dbc.DropdownMenuItem("Heatmap", href="/pca_heatmap"),
                 ],
                 nav=True,
                 in_navbar=True,
@@ -55,9 +56,11 @@ def display_page(pathname):
         return pca_time.layout
     if pathname == '/pca_pairplot':
         return pca_pairplot.layout
+    if pathname == '/pca_heatmap':
+        return pca_heatmap.layout
     else:
         return "404 Page Error! Please choose a link"
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)

@@ -10,7 +10,7 @@ PCA_SCORES_URL = "https://raw.githubusercontent.com/FgSurewin/Data_Visualization
 dfg = pd.read_csv(PCA_SCORES_URL)
 
 layout = html.Div([
-    html.H1('PCA Scores - 3D plot', style={"textAlign": "center", "marginBottom": "50px"}),
+    html.H1('PCA Scores - 3D plot', style={"textAlign": "center", "marginBottom": "50px", "marginTop": "50px"}),
     dbc.Row([
             dbc.Col([
                 dbc.Row(

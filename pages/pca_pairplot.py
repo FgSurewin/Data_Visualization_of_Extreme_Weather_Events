@@ -10,7 +10,7 @@ PCA_SCORES_URL = "https://raw.githubusercontent.com/FgSurewin/Data_Visualization
 dfg = pd.read_csv(PCA_SCORES_URL)
 
 layout = html.Div([
-    html.H1('Pairplot', style={"textAlign": "center", "marginBottom": "50px"}),
+    html.H1('Pairplot', style={"textAlign": "center", "marginBottom": "50px", "marginTop": "50px"}),
     dbc.Row([
             dbc.Col(
                 [
@@ -31,9 +31,7 @@ layout = html.Div([
                             id='pca_type_dropdown', value="Event_Type", clearable=False,
                             persistence=True, persistence_type='session',
                             options=[{'label': "Event Type", 'value': "Event_Type"} , {'label': "Year", 'value': "Year"}],
-                            style={"color": "black"}
-
-                        ), 
+                            style={"color": "black"}), 
                         width=6)
                     ],
                     justify="center",
