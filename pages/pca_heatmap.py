@@ -46,8 +46,8 @@ layout = html.Div([
             dbc.Col(
                 [
                     html.H2("Findings: "),
-                    html.P("The following visualization is a bar chart that compares the relationship between the explained variance and the principal components."),
-                    html.P("As seen below, the first principal component generated is the one that possesses the highest ratio as opposed to the other values computed. In other words, PC1 reveals the percentage of variance that is attributed by each of the selected components. In theory, it would be ideal to have an explained variance ratio below .80 to build accurate machine learning models without overfitting the data.")
+                    html.P("We presented the Pearson correlation coefficients between principal component scores and observed data."),
+                    html.P("Higher correlation coefficients are shown in dark purple (for negative correlations) and in light orange (for positive correlations). Each row corresponds to one of the PC scores and each column corresponds to one of the features in original data. We can conclude that the first principal component ( which explains the highest variability in data) is positively correlated with “Property Loss”, “Indirect Deaths” and “Crops Damage” and  the correlation coefficients are 0.87, 0.73 and 0.71, respectively. The second principal component is positively correlated  with “Indirect Injuries” (coefficient=0.71) and negatively correlated with “Direct Deaths” (coefficient = -0.56).")
                 ],
                 width=12,
                 lg=4,
