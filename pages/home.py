@@ -57,7 +57,8 @@ def scatter_all(event_name,title,linecol):
 # Map
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
   counties = json.load(response)
-
+# file_path = "./datasets/geojson-counties-fips.json"
+# counties = json.load(file_path)
 
 County_Refs= pd.read_csv('https://raw.githubusercontent.com/kjhealy/us-county/master/data/census/fips-by-state.csv',encoding = 'unicode_escape')
 County_Refs['County']=County_Refs['name']+', '+ County_Refs["state"]

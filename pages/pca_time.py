@@ -6,7 +6,7 @@ import plotly.express as px
 import pandas as pd
 from app import app
 
-PCA_SCORES_URL = "https://raw.githubusercontent.com/FgSurewin/Data_Visualization_of_Extreme_Weather_Events/main/datasets/pca_scores.csv"
+PCA_SCORES_URL = "https://raw.githubusercontent.com/FgSurewin/DSE_2700_DATA/main/DataVizs/pca_scores.csv"
 dfg = pd.read_csv(PCA_SCORES_URL)
 
 layout = html.Div([
