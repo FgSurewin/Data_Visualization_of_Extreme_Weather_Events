@@ -1,14 +1,29 @@
 
+import dash
 from dash import dcc
 from dash import html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 
 
-
+# --------------------------------- old code --------------------------------- #
 # Connect to main app.py file
-from app import app
-from app import server
+# from app import app
+# from app import server
+
+# meta_tags are required for the app layout to be mobile responsive
+app = dash.Dash(__name__, suppress_callback_exceptions=True,
+                meta_tags=[{'name': 'viewport',
+                            'content': 'width=device-width, initial-scale=1.0'}]
+                )
+# (1) Style:
+# Bootstrap Theme: https://bootswatch.com/
+# Download the one you want and put it inside the assets folder. (Or replace the old css file)
+
+# (2) Title:
+app.title = "Data Analysis of Extreme Weather Events"
+
+server = app.server
 
 
 # Connect to your app pages
